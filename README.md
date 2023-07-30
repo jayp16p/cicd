@@ -45,7 +45,7 @@ Verify Jenkins is able to be accessesd on port 8080 and setup Jenkins as usual.
 * On the Jenkins instance, go to /etc/ansible and add to the hosts file the group and public IP of the dockerinstance
 ![image](https://github.com/jayp16p/cicd/assets/106398902/6ffbee4f-03ff-47f6-9620-f6cdc3be7874)
 * Become root on jenkins, switch to jenkins user ( su jenkins ) and cd to its home ( cd ~ ), create a directory called playbooks and cd into it..
-* run "ssh-keygen" from jenkins host, copy its public file content -> PASTE INTO DOCKER INSTANCE AUTHORIZED KEYS FILE .ssh/authorized_keys (SO FROM JENKINS USER ON jenkins instance to Docker's authorized keys)
+* run "ssh-keygen" from jenkins host, copy its public file content -> PASTE INTO DOCKER INSTANCE's AUTHORIZED KEYS FILE .ssh/authorized_keys (SO FROM JENKINS USER ON jenkins instance to Docker's authorized keys)
 ![image](https://github.com/jayp16p/cicd/assets/106398902/d08b920b-d3aa-4d54-80fe-7d05b5eab9fc)
 * You should now be able to get into the Docker instance from Jenkins if all worked correctly.
 
@@ -82,12 +82,14 @@ I just made a test file in repo to trigger the pipeline
 
 #### Add Execute shell in build-step
 * This is so that everytime there is a change in the git repo, this command "ansible-playbook deployment.yaml" is run to automate everything, instead of running manually!
-![image](https://github.com/jayp16p/cicd/assets/106398902/75925e89-5f16-4448-a023-2388f73e5da2) OR ![image](https://github.com/jayp16p/cicd/assets/106398902/2d679b22-4e72-4842-861b-f8b4ac8d631c)
+![image](https://github.com/jayp16p/cicd/assets/106398902/75925e89-5f16-4448-a023-2388f73e5da2)
+OR
+![image](https://github.com/jayp16p/cicd/assets/106398902/2d679b22-4e72-4842-861b-f8b4ac8d631c)
 
 Checking if all is working..
 ![image](https://github.com/jayp16p/cicd/assets/106398902/b342cdd7-eb5c-476a-bcac-85a7cf898fa6)
 
-### FINAL TEST.. EDIT the "Call : +01 123455678990" on the homepage..
+### FINAL TEST.. EDIT the "Call : +01 123455678990" on the homepage or anything else..
 ### if everything is fine, the build should trigger, and changes should show up..
 
 ![image](https://github.com/jayp16p/cicd/assets/106398902/a63cb940-857d-4c7b-be8b-cd01c19bd9ab)
