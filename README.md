@@ -98,6 +98,8 @@ Checking if all is working..
 ![image](https://github.com/jayp16p/cicd/assets/106398902/937174d2-cc0c-40d0-87ca-6b940b4cf358)
 
 VOILA, works!
+So.. we have automated the whole process by using Ansible playbooks to Create, Build, Delete the Docker Images and containers everytime there is a change in the repo, and all this is automatically handled
+in the background! Webhooks are used to share any changes from the repo to Jenkins which triggers the pipeline, Nginx is used here as the webserver to host the site!
 
 ![image](https://github.com/jayp16p/cicd/assets/106398902/6a61e040-d927-4718-983b-a610cdbcd04b)
 
