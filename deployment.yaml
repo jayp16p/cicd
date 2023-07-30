@@ -1,16 +1,19 @@
+# Playbook for building and deploying a Docker container
 - name: Build & Deploy Docker Container
   hosts: dockerservers
   gather_facts: false
   remote_user: root
   tasks:
     - name: Copy the files to remote server
+      # Task to copy the necessary files from the Jenkins workspace to the remote server
       become: true
-      ansible.builtin.copy:
+      copy:
         src: /var/lib/jenkins/workspace/ansible-jenkins-pipeline/
         dest: ~/project
 
     - name: Building Docker Image
-      community.docker.docker_image:
+      # Task to build the Docker image using the files copied to the remote server
+      docker_image:
         build:
           path: ~/project
         name: hostit:latest
@@ -18,24 +21,28 @@
         state: present
     
     - name: Stopping the Container
+      # Task to stop the currently running container (if any)
       docker_container:
         name: hostit-container
         image: hostit:latest
         state: stopped
 
     - name: Remove the Container
+      # Task to remove the existing container (if any)
       docker_container:
         name: hostit-container
         image: hostit:latest
         state: absent
   
     - name: Removing Docker Image
-      community.docker.docker_image:
+      # Task to remove the Docker image from the host
+      docker_image:
         name: hostit:latest
         state: absent
 
     - name: Building Docker Image
-      community.docker.docker_image:
+      # Task to build the Docker image again (after removal) to ensure latest changes are incorporated
+      docker_image:
         build:
           path: ~/project
         name: hostit:latest
@@ -43,6 +50,7 @@
         state: present
 
     - name: Creating the Container
+      # Task to create and start the Docker container with port mapping (host port 80 to container port 80)
       docker_container:
         name: hostit-container
         image: hostit:latest
