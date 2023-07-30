@@ -5,10 +5,10 @@
   tasks:
     - name: Copy the files to remote server
       become: true
-      copy:
-        src: /var/lib/jenkins/workspace/ansible-jenkins-pipeline
+      ansible.builtin.copy:
+        src: /var/lib/jenkins/workspace/ansible-jenkins-pipeline/
         dest: ~/project
-    
+
     - name: Building Docker Image
       docker_image:
         name: hostit:latest
