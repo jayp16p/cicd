@@ -80,8 +80,24 @@ I just made a test file in repo to trigger the pipeline
 ![image](https://github.com/jayp16p/cicd/assets/106398902/7aecfaef-1c79-4c8e-942b-ecca3900f874)
 
 
+#### Add Execute shell in build-step
+* This is so that everytime there is a change in the git repo, this command "ansible-playbook deployment.yaml" is run to automate everything, instead of running manually!
+![image](https://github.com/jayp16p/cicd/assets/106398902/75925e89-5f16-4448-a023-2388f73e5da2) OR ![image](https://github.com/jayp16p/cicd/assets/106398902/2d679b22-4e72-4842-861b-f8b4ac8d631c)
 
+Checking if all is working..
+![image](https://github.com/jayp16p/cicd/assets/106398902/b342cdd7-eb5c-476a-bcac-85a7cf898fa6)
 
+### FINAL TEST.. EDIT the "Call : +01 123455678990" on the homepage..
+### if everything is fine, the build should trigger, and changes should show up..
+
+![image](https://github.com/jayp16p/cicd/assets/106398902/a63cb940-857d-4c7b-be8b-cd01c19bd9ab)
+![image](https://github.com/jayp16p/cicd/assets/106398902/f03a1c1e-eda5-4bd2-90ef-836d3df8ada3)
+![image](https://github.com/jayp16p/cicd/assets/106398902/8ee46530-a7ed-45d8-aa19-bbfcbc2449df)
+![image](https://github.com/jayp16p/cicd/assets/106398902/937174d2-cc0c-40d0-87ca-6b940b4cf358)
+
+VOILA, works!
+
+![image](https://github.com/jayp16p/cicd/assets/106398902/6a61e040-d927-4718-983b-a610cdbcd04b)
 
 
 
