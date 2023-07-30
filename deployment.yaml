@@ -12,6 +12,7 @@
     - name: Building Docker Image
       docker_image:
         name: hostit:latest
+        source: build
         build:
           path: ~/project
         state: present
