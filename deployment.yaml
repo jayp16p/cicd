@@ -1,0 +1,25 @@
+- name: Build & Deploy Docker Container
+  hosts: dockerservers
+  gather_facts: false
+  remote_user: root
+  tasks:
+    - name: Copy the files to remote server
+      become: true
+      copy:
+        src: /var/lib/jenkins/workspace/ansible-jenkins-pipeline
+        dest: ~/project
+    
+    - name: Building Docker Image
+      docker_image:
+        name: hostit:latest
+        build:
+          path: ~/project
+        state: present
+
+    - name: Creating the Container
+      docker_container:
+        name: hostit-container
+        image: hostit:latest
+        ports:
+          - "80:80"
+        state: started
