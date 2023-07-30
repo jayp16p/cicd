@@ -36,7 +36,7 @@ Verify Jenkins is able to be accessesd on port 8080 and setup Jenkins as usual.
 * Generate SSH key on docker instance - run as root "ssh-keygen"
 * Install dependences on Jenkins Instance to run docker commands - sudo apt install python3-pip && pip install docker
 
-* On the Jenkins instance, go to /etc/ansible and add to the hosts file the group and public IP of the docker instance
+* On the Jenkins instance, go to /etc/ansible and add to the hosts file the group and public IP of the dockerinstance
 ![image](https://github.com/jayp16p/cicd/assets/106398902/6ffbee4f-03ff-47f6-9620-f6cdc3be7874)
 * Become root on jenkins, switch to jenkins user ( su jenkins ) and cd to its home ( cd ~ ), create a directory called playbooks and cd into it..
 * run "ssh-keygen" from jenkins host, copy its public file content -> PASTE INTO DOCKER INSTANCE AUTHORIZED KEYS FILE .ssh/authorized_keys (SO FROM JENKINS USER ON jenkins instance to Docker's authorized keys)
@@ -47,8 +47,23 @@ Verify Jenkins is able to be accessesd on port 8080 and setup Jenkins as usual.
 ![image](https://github.com/jayp16p/cicd/assets/106398902/58d6fb2d-ddb5-4803-a1ad-db7f24c7366a)
 ![image](https://github.com/jayp16p/cicd/assets/106398902/1e9e712c-1085-4ff0-bdbd-dceaf5b0f922)
 
-* before you run the deployment file from jenkins ( cd /var/lib/jenkins/playbooks/deployments.yaml - make sure you have projects dir in docker instance in the home path )
-* to run the playbook its "ansible-playbook deployments.yaml
+* before you run the deployment file from jenkins ( cd /var/lib/jenkins/playbooks/deployment.yaml - make sure you have projects dir in docker instance in the home path )
+* to run the playbook its "ansible-playbook deployment.yaml"
+![image](https://github.com/jayp16p/cicd/assets/106398902/0ac360b8-88a0-4e0b-8f3c-9f920f6482ea)
+* don't worry about the error for the docker image, at this phase copy is working, its getting fixed as we go along
+
+### Enable Webhooks to trigger builds automatically
+Ensure that "GitHub hook trigger for GITScm polling" is checked in pipeline
+![image](https://github.com/jayp16p/cicd/assets/106398902/2e6d14bf-c138-44ac-a478-1b44dffd84e0)
+* In Github
+![image](https://github.com/jayp16p/cicd/assets/106398902/114947de-f3d6-4ab9-8539-6543655585c5)
+![image](https://github.com/jayp16p/cicd/assets/106398902/919e915f-2c2e-42c0-a433-5c7c121e2595)
+
+#### Now changes in the Repo will trigger the pipeline!
+
+
+
+
 
 
 
