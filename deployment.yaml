@@ -10,11 +10,11 @@
         dest: ~/project
 
     - name: Building Docker Image
-      docker_image:
-        name: hostit:latest
-        source: build
+      community.docker.docker_image:
         build:
           path: ~/project
+        name: hostit:latest
+        source: build
         state: present
 
     - name: Creating the Container
