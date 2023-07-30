@@ -3,6 +3,12 @@
 
 ### Download a sample template and push it to this repo
 Any basic template that has HTML will do (https://www.free-css.com/free-css-templates/page293/hostit)
+Make sure in your repo you have a "Dockerfile" otherwise building might fail "("Cannot locate specified Dockerfile: Dockerfile")"
+Create Dockerfile with below contents
+```
+FROM nginx:latest
+COPY . /usr/share/nginx/html"
+```
 
 ### Create EC2 instances in AWS
 Running two of these(using Ubuntu) - One for Jenkins and the other one that runs Docker
@@ -56,10 +62,25 @@ Verify Jenkins is able to be accessesd on port 8080 and setup Jenkins as usual.
 Ensure that "GitHub hook trigger for GITScm polling" is checked in pipeline
 ![image](https://github.com/jayp16p/cicd/assets/106398902/2e6d14bf-c138-44ac-a478-1b44dffd84e0)
 * In Github
+* Make sure you add <IP Address for Jenkins:Port>/github-webhook/ otherwise without "/github-webhook/" it won't work
 ![image](https://github.com/jayp16p/cicd/assets/106398902/114947de-f3d6-4ab9-8539-6543655585c5)
 ![image](https://github.com/jayp16p/cicd/assets/106398902/919e915f-2c2e-42c0-a433-5c7c121e2595)
 
 #### Now changes in the Repo will trigger the pipeline!
+I just made a test file in repo to trigger the pipeline
+![image](https://github.com/jayp16p/cicd/assets/106398902/66aff0e8-5020-4338-9419-3e4fa7fd22e2)
+
+
+#### Buld the docker image
+- Ensure you have a Dockerfile in the path as mention in the starting of this lab
+![image](https://github.com/jayp16p/cicd/assets/106398902/132506c8-d325-4e76-9a27-d6ec60c6604b)
+* Docker image built!
+![image](https://github.com/jayp16p/cicd/assets/106398902/2b5353ad-4140-4d0e-ae5d-a4c4b5d1ae92)
+* Site is running, but we need to automate everything... follow along
+![image](https://github.com/jayp16p/cicd/assets/106398902/7aecfaef-1c79-4c8e-942b-ecca3900f874)
+
+
+
 
 
 
